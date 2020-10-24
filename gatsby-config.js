@@ -1,11 +1,29 @@
+const endpoints = {
+  dev: "http://localhost:4000/graphql",
+  production: "https://bk-gatsby-stress-test-backend.herokuapp.com/",
+}
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Gatsby TV Shows Stress Test`,
+    description: `This is a test of how many pages Gatsby can handle.`,
+    author: `Ben King`,
   },
   plugins: [
+    // Simple config, passing URL
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "TenantContent",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "tenantContent",
+        // Url to query from
+        url: "http://localhost:4000/graphql",
+      },
+    },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,8 +31,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    // `gatsby-transformer-sharp`,
+    // `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
