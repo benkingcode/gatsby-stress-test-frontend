@@ -1,6 +1,6 @@
 const endpoints = {
-  dev: "http://localhost:4000/graphql",
-  production: "https://bk-gatsby-stress-test-backend.herokuapp.com/",
+  development: "http://localhost:4000/graphql",
+  production: "https://bk-gatsby-stress-test-backend.herokuapp.com/graphql",
 }
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "tenantContent",
         // Url to query from
-        url: "http://localhost:4000/graphql",
+        url: endpoints[process.env.NODE_ENV || "development"],
       },
     },
     `gatsby-plugin-react-helmet`,
